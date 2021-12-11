@@ -1,0 +1,17 @@
+---
+- hosts: nodes
+  tasks:  
+  - name: Installing httpd
+    yum: pkg=httpd state=present
+  - name: Starting httpd
+    service: name=httpd state=started
+  - name: Copying index.html to the node
+    copy: src=./index.html dest=/var/www/html/index.html 
+  - name: Opening TCP port 80 for httpd
+    firewalld: port=80/tcp permanent=yes state=enabled
+    notify: 
+      - fwrestart
+  handlers:
+    - name: fwrestart
+      service: name=firewalld state=restarted
+...
