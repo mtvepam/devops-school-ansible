@@ -1,0 +1,14 @@
+#Here is log of some console cammands
+#creating encrypt key
+echo 123123 > ./hidden/vault_key
+#creating different encrypted password for users
+ansible-vault encrypt_string --vault-password-file ./hidden/vault_key Abc123def_
+ansible-vault encrypt_string --vault-password-file ./hidden/vault_key aBc123def_
+ansible-vault encrypt_string --vault-password-file ./hidden/vault_key abC123def_
+
+#running playbook
+ansible-playbook task2.yml --vault-password-file=./hidden/vault_key
+
+#Users have been createred on managed nodes. I tryed to login on node2 with Bob account It was successful.
+# If I change any user password User or password  won't rewrite/recreate by the next playbook runs. Idempotency respects
+#Regards Tatiana
