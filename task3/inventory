@@ -1,0 +1,4 @@
+[nodes]
+node1.example.com serv=httpd
+node2.example.com serv=vsftpd
+node1.example.com serv=vsftpd

@@ -1,0 +1,4 @@
+---
+# handlers file for servs
+- name: fwrestart
+  service: name=firewalld state=restarted

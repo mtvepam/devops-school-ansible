@@ -1,0 +1,9 @@
+---
+# vars file for vsftpd
+ anonymous_enable: yes
+ no_anon_password: yes
+ anon_root: /var/ftp/pub
+ local_enable: yes
+ write_enable: yes
+ chroot_local_user: yes
+

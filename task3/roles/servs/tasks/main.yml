@@ -1,0 +1,7 @@
+---
+# tasks file. Depending on var serv different servicies will be setup
+
+- include_tasks: set_http.yml
+  when: serv == 'httpd'
+- include_tasks: set_ftp.yml
+  when: serv  == 'vsftpd'

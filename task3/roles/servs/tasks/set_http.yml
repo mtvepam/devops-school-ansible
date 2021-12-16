@@ -1,0 +1,16 @@
+---
+# task for httpd installing
+- name: Installing httpd
+  yum: pkg=httpd state=present
+- name: Starting httpd
+  service: name=httpd state=started
+- name: Copying index.html to the node
+  copy: src=index.html dest=/var/www/html/index.html 
+- name: Opening TCP port 80 for httpd
+  firewalld: port=80/tcp permanent=yes state=enabled
+  notify:
+    - fwrestart
+- name: messaging
+  debug:
+    msg: HTTP should replay on {{ansible_all_ipv4_addresses}} {{inventory_hostname}} OS version  {{ansible_os_family}} 
+...

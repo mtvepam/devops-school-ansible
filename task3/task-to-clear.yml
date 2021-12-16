@@ -1,0 +1,16 @@
+---
+ - hosts: nodes
+   tasks:  
+    - name: Removing httpd
+      yum: pkg=httpd state=absent
+    - name: REmoving vsftpd
+      yum: pkg=vsftpd state=absent
+    - name: Removing index.html
+      ansible.builtin.file: path=/var/www/html/index.html state=absent
+    - name: Removing ftp.conf
+      ansible.builtin.file: path=/etc/vsftpd/vsftpd.conf state=absent
+    - name: Closing TCP port http on firewall
+      firewalld: port=80/tcp permanent=yes state=disabled
+    - name: Closing TCP ports FTP on firewall
+      firewalld: port=20-21/tcp permanent=yes state=disabled
+...

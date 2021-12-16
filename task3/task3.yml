@@ -1,0 +1,6 @@
+---
+- name: installing services by roles
+  hosts: nodes
+  roles: 
+   - role: servs
+...

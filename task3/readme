@@ -1,0 +1,15 @@
+#Hello Dmitry!
+#
+#My idea is to setup http or/and ftp services depending on an inventory file
+#Example of  inventory
+#[nodes]
+#node1.example.com serv=httpd
+#node2.example.com serv=vsftpd
+#This means that  httpd should be installed on node1 as well as vsftpd on node2. And nothing to do if that services already exist.
+#
+#I have applied the role SERV (3 tasks file, var file, handler file, template), ansible_facts variables, included tasks etc.
+#The playbook task-to-clear.ymp to reset hosts to initial  state
+#Regards Tatiana
+
+
+

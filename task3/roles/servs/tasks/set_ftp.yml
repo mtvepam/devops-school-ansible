@@ -1,0 +1,20 @@
+---
+# tasks for vsftp installing
+- name: including vars
+  include_vars: vsftpd.yml
+- name: Installing vsftp
+  yum: pkg=vsftpd state=present
+- name: making template
+  template:
+    src: vsftpd.j2
+    dest: /etc/vsftpd/vsftpd.conf
+- name: Starting vsftpd
+  service: name=vsftpd state=started
+- name: Opening TCP port 20 and 21 for ftp
+  firewalld: port=20-21/tcp permanent=yes state=enabled
+  notify:
+    - fwrestart
+- name: messaging
+  debug:
+     msg: FTP should reply on {{ansible_all_ipv4_addresses}}  {{inventory_hostname}}  OS version {{ansible_os_family}} 
+...
